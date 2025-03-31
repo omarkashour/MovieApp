@@ -4,17 +4,18 @@ interface Props {
   id: number;
   title: string;
   release_date: number;
-  imgSrc: string;
+  poster_path: string;
 }
-const movieCard = ({ id, title, release_date, imgSrc }: Props) => {
-  const handleOnClick = () => {
-    alert("clicked");
-  };
+const movieCard = ({ id, title, release_date, poster_path }: Props) => {
+  const handleOnClick = () => {};
 
   return (
     <div className="movie-card">
       <div className="movie-poster">
-        <img src={imgSrc} alt={title} />
+        <img
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt={title}
+        />
         <div className="movie-overlay">
           <button className="favourite-btn" onClick={handleOnClick}>
             ♡

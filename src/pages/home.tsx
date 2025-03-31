@@ -1,21 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
+import { getPopularMovies, searchMovies } from "../services/api";
 
-const movies = [
-  { id: 1, title: "John Wick", release_date: 2021 },
-  { id: 2, title: "Avengers", release_date: 2024 },
-  { id: 3, title: "Iron Man", release_date: 2023 },
-  { id: 4, title: "Spider Man", release_date: 2020 },
-  { id: 5, title: "Hulk", release_date: 2007 },
-  { id: 6, title: "Moon Knight", release_date: 2010 },
-];
+interface Movie {
+  id: number;
+  title: string;
+  release_date: number;
+  poster_path: string;
+}
 
 const home = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPopularMovies = async () => {
+      try {
+        const popularMovies: Movie[] = await getPopularMovies();
+        setMovies(popularMovies);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load movies...");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPopularMovies();
+  }, []);
+
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchQuery("");
+    if (!searchQuery.trim()) return;
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      const searchResults: Movie[] = await searchMovies(searchQuery);
+      setMovies(searchResults);
+      setError("");
+    } catch (err) {
+      console.log(err);
+      setError("Failed to search movies...");
+    } finally {
+      setLoading(false);
+    }
+
+    // setSearchQuery("");
   };
   return (
     <>
@@ -34,13 +67,15 @@ const home = () => {
           </button>
         </form>
 
+        {error && <div className="error-message">{error}</div>}
+        {loading && <div className="loading">Loading...</div>}
         <div className="movies-grid">
           {movies.map((movie) => (
             <MovieCard
               id={movie.id}
               title={movie.title}
               release_date={movie.release_date}
-              imgSrc={""}
+              poster_path={movie.poster_path}
               key={movie.id}
             ></MovieCard>
           ))}
