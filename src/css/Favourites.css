@@ -1,39 +1,52 @@
 .favourites {
-  padding: 2rem;
+  padding: 3rem 1rem;
   width: 100%;
   box-sizing: border-box;
+  text-align: center;
+  background-color: var(--background-dark);
+  color: var(--text-light);
 }
 
 .favourites h2 {
   margin-bottom: 2rem;
-  text-align: center;
   font-size: 2.5rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .favourites-empty {
-  text-align: center;
-  padding: 4rem 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
   margin: 2rem auto;
   max-width: 600px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.favourites-empty:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.15);
 }
 
 .favourites-empty h2 {
   margin-bottom: 1rem;
   font-size: 2rem;
-  color: #e50914;
+  font-weight: bold;
+  color: var(--primary-color);
 }
 
 .favourites-empty p {
-  color: #999;
+  color: var(--text-muted);
   font-size: 1.2rem;
   line-height: 1.6;
+  max-width: 500px;
 }
 
-/* Animation for new u being added */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -46,5 +59,5 @@
 }
 
 .movies-grid > * {
-  animation: fadeIn 0.3s ease-out forwards;
+  animation: fadeIn 0.4s ease-out forwards;
 }
