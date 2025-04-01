@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+# MovieApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MovieApp** is a React-based web application built with TypeScript and Vite. It allows users to explore movie details using data from [The Movie Database (TMDb)](https://www.themoviedb.org/).
 
-Currently, two official plugins are available:
+## Features
+- 🚀 Modern frontend stack: React + TypeScript + Vite
+- 🔄 Client-side routing with React Router
+- 🎬 Fetches movie data from TMDb API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/MovieApp.git
+   cd MovieApp
+   ```
+
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Install Vite (if not already installed):**
+   ```sh
+   npm install vite@latest
+   ```
+
+4. **Install React Router:**
+   ```sh
+   npm install react-router-dom
+   ```
+
+### Configuration
+Before running the application, you need to set up an API key:
+
+1. **Create an account and generate an API key** from [TMDb](https://www.themoviedb.org/).
+2. **Open the `Api.ts` file** in the project directory.
+3. **Replace the placeholder with your API key:**
+   ```ts
+   const API_KEY = "your_api_key_here";
+   ```
+
+### Running the App
+Start the development server:
+```sh
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The app will be available at **`http://localhost:5173/`** (default Vite port).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+💡 *Feel free to modify and enhance this project. Contributions are welcome!*
