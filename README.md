@@ -41,7 +41,7 @@ Ensure you have the following installed:
 Before running the application, you need to set up an API key:
 
 1. **Create an account and generate an API key** from [TMDb](https://www.themoviedb.org/).
-2. **Open the `src/services/api.ts` file** in the project directory.
+2. **Open the `src/services/Api.ts` file** in the project directory.
 3. **Replace the placeholder with your API key:**
    ```ts
    const API_KEY = "your_api_key_here";
